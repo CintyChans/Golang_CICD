@@ -1,5 +1,12 @@
 name: hosted-ninja-vcpkg_submod-autocache
-on: [push, workflow_dispatch]
+
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
 
 jobs:
   job:
