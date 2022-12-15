@@ -14,14 +14,10 @@ jobs:
       
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v3
+      - uses: PxyUp/protoc-actions@v3.0.0
       - name: Install Protoc
-        uses: arduino/setup-protoc@v1
         with:
-          version: '3.x'
-          include-pre-releases: true
-          
-          run: protoc ./cmakepresets/test.proto --cpp_out=./    
+          path: -I./ --go_opt=paths=source_relative --go_out=./generated cmakepresets/test.proto
           
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
