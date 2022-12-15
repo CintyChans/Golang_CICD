@@ -44,20 +44,17 @@ struct TableStruct_test_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_test_2eproto;
-namespace IM {
 class MsgPerson;
 struct MsgPersonDefaultTypeInternal;
 extern MsgPersonDefaultTypeInternal _MsgPerson_default_instance_;
-}  // namespace IM
 PROTOBUF_NAMESPACE_OPEN
-template<> ::IM::MsgPerson* Arena::CreateMaybeMessage<::IM::MsgPerson>(Arena*);
+template<> ::MsgPerson* Arena::CreateMaybeMessage<::MsgPerson>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
-namespace IM {
 
 // ===================================================================
 
 class MsgPerson final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:IM.MsgPerson) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MsgPerson) */ {
  public:
   inline MsgPerson() : MsgPerson(nullptr) {}
   ~MsgPerson() override;
@@ -160,7 +157,7 @@ class MsgPerson final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "IM.MsgPerson";
+    return "MsgPerson";
   }
   protected:
   explicit MsgPerson(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -188,7 +185,7 @@ class MsgPerson final :
   void _internal_set_id(uint32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:IM.MsgPerson)
+  // @@protoc_insertion_point(class_scope:MsgPerson)
  private:
   class _Internal;
 
@@ -221,7 +218,7 @@ inline uint32_t MsgPerson::_internal_id() const {
   return _impl_.id_;
 }
 inline uint32_t MsgPerson::id() const {
-  // @@protoc_insertion_point(field_get:IM.MsgPerson.id)
+  // @@protoc_insertion_point(field_get:MsgPerson.id)
   return _internal_id();
 }
 inline void MsgPerson::_internal_set_id(uint32_t value) {
@@ -230,7 +227,7 @@ inline void MsgPerson::_internal_set_id(uint32_t value) {
 }
 inline void MsgPerson::set_id(uint32_t value) {
   _internal_set_id(value);
-  // @@protoc_insertion_point(field_set:IM.MsgPerson.id)
+  // @@protoc_insertion_point(field_set:MsgPerson.id)
 }
 
 #ifdef __GNUC__
@@ -239,7 +236,6 @@ inline void MsgPerson::set_id(uint32_t value) {
 
 // @@protoc_insertion_point(namespace_scope)
 
-}  // namespace IM
 
 // @@protoc_insertion_point(global_scope)
 

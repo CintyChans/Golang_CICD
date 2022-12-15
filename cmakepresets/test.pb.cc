@@ -20,7 +20,6 @@ PROTOBUF_PRAGMA_INIT_SEG
 namespace _pb = ::PROTOBUF_NAMESPACE_ID;
 namespace _pbi = _pb::internal;
 
-namespace IM {
 PROTOBUF_CONSTEXPR MsgPerson::MsgPerson(
     ::_pbi::ConstantInitialized): _impl_{
     /*decltype(_impl_.id_)*/0u
@@ -34,35 +33,34 @@ struct MsgPersonDefaultTypeInternal {
   };
 };
 PROTOBUF_ATTRIBUTE_NO_DESTROY PROTOBUF_CONSTINIT PROTOBUF_ATTRIBUTE_INIT_PRIORITY1 MsgPersonDefaultTypeInternal _MsgPerson_default_instance_;
-}  // namespace IM
 static ::_pb::Metadata file_level_metadata_test_2eproto[1];
 static constexpr ::_pb::EnumDescriptor const** file_level_enum_descriptors_test_2eproto = nullptr;
 static constexpr ::_pb::ServiceDescriptor const** file_level_service_descriptors_test_2eproto = nullptr;
 
 const uint32_t TableStruct_test_2eproto::offsets[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
   ~0u,  // no _has_bits_
-  PROTOBUF_FIELD_OFFSET(::IM::MsgPerson, _internal_metadata_),
+  PROTOBUF_FIELD_OFFSET(::MsgPerson, _internal_metadata_),
   ~0u,  // no _extensions_
   ~0u,  // no _oneof_case_
   ~0u,  // no _weak_field_map_
   ~0u,  // no _inlined_string_donated_
-  PROTOBUF_FIELD_OFFSET(::IM::MsgPerson, _impl_.id_),
+  PROTOBUF_FIELD_OFFSET(::MsgPerson, _impl_.id_),
 };
 static const ::_pbi::MigrationSchema schemas[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) = {
-  { 0, -1, -1, sizeof(::IM::MsgPerson)},
+  { 0, -1, -1, sizeof(::MsgPerson)},
 };
 
 static const ::_pb::Message* const file_default_instances[] = {
-  &::IM::_MsgPerson_default_instance_._instance,
+  &::_MsgPerson_default_instance_._instance,
 };
 
 const char descriptor_table_protodef_test_2eproto[] PROTOBUF_SECTION_VARIABLE(protodesc_cold) =
-  "\n\ntest.proto\022\002IM\"\027\n\tMsgPerson\022\n\n\002id\030\001 \001("
-  "\rb\006proto3"
+  "\n\ntest.proto\"\027\n\tMsgPerson\022\n\n\002id\030\001 \001(\rb\006p"
+  "roto3"
   ;
 static ::_pbi::once_flag descriptor_table_test_2eproto_once;
 const ::_pbi::DescriptorTable descriptor_table_test_2eproto = {
-    false, false, 49, descriptor_table_protodef_test_2eproto,
+    false, false, 45, descriptor_table_protodef_test_2eproto,
     "test.proto",
     &descriptor_table_test_2eproto_once, nullptr, 0, 1,
     schemas, file_default_instances, TableStruct_test_2eproto::offsets,
@@ -75,7 +73,6 @@ PROTOBUF_ATTRIBUTE_WEAK const ::_pbi::DescriptorTable* descriptor_table_test_2ep
 
 // Force running AddDescriptors() at dynamic initialization time.
 PROTOBUF_ATTRIBUTE_INIT_PRIORITY2 static ::_pbi::AddDescriptorsRunner dynamic_init_dummy_test_2eproto(&descriptor_table_test_2eproto);
-namespace IM {
 
 // ===================================================================
 
@@ -87,7 +84,7 @@ MsgPerson::MsgPerson(::PROTOBUF_NAMESPACE_ID::Arena* arena,
                          bool is_message_owned)
   : ::PROTOBUF_NAMESPACE_ID::Message(arena, is_message_owned) {
   SharedCtor(arena, is_message_owned);
-  // @@protoc_insertion_point(arena_constructor:IM.MsgPerson)
+  // @@protoc_insertion_point(arena_constructor:MsgPerson)
 }
 MsgPerson::MsgPerson(const MsgPerson& from)
   : ::PROTOBUF_NAMESPACE_ID::Message() {
@@ -98,7 +95,7 @@ MsgPerson::MsgPerson(const MsgPerson& from)
 
   _internal_metadata_.MergeFrom<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(from._internal_metadata_);
   _this->_impl_.id_ = from._impl_.id_;
-  // @@protoc_insertion_point(copy_constructor:IM.MsgPerson)
+  // @@protoc_insertion_point(copy_constructor:MsgPerson)
 }
 
 inline void MsgPerson::SharedCtor(
@@ -112,7 +109,7 @@ inline void MsgPerson::SharedCtor(
 }
 
 MsgPerson::~MsgPerson() {
-  // @@protoc_insertion_point(destructor:IM.MsgPerson)
+  // @@protoc_insertion_point(destructor:MsgPerson)
   if (auto *arena = _internal_metadata_.DeleteReturnArena<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>()) {
   (void)arena;
     return;
@@ -129,7 +126,7 @@ void MsgPerson::SetCachedSize(int size) const {
 }
 
 void MsgPerson::Clear() {
-// @@protoc_insertion_point(message_clear_start:IM.MsgPerson)
+// @@protoc_insertion_point(message_clear_start:MsgPerson)
   uint32_t cached_has_bits = 0;
   // Prevent compiler warnings about cached_has_bits being unused
   (void) cached_has_bits;
@@ -177,7 +174,7 @@ failure:
 
 uint8_t* MsgPerson::_InternalSerialize(
     uint8_t* target, ::PROTOBUF_NAMESPACE_ID::io::EpsCopyOutputStream* stream) const {
-  // @@protoc_insertion_point(serialize_to_array_start:IM.MsgPerson)
+  // @@protoc_insertion_point(serialize_to_array_start:MsgPerson)
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
 
@@ -191,12 +188,12 @@ uint8_t* MsgPerson::_InternalSerialize(
     target = ::_pbi::WireFormat::InternalSerializeUnknownFieldsToArray(
         _internal_metadata_.unknown_fields<::PROTOBUF_NAMESPACE_ID::UnknownFieldSet>(::PROTOBUF_NAMESPACE_ID::UnknownFieldSet::default_instance), target, stream);
   }
-  // @@protoc_insertion_point(serialize_to_array_end:IM.MsgPerson)
+  // @@protoc_insertion_point(serialize_to_array_end:MsgPerson)
   return target;
 }
 
 size_t MsgPerson::ByteSizeLong() const {
-// @@protoc_insertion_point(message_byte_size_start:IM.MsgPerson)
+// @@protoc_insertion_point(message_byte_size_start:MsgPerson)
   size_t total_size = 0;
 
   uint32_t cached_has_bits = 0;
@@ -221,7 +218,7 @@ const ::PROTOBUF_NAMESPACE_ID::Message::ClassData*MsgPerson::GetClassData() cons
 void MsgPerson::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROTOBUF_NAMESPACE_ID::Message& from_msg) {
   auto* const _this = static_cast<MsgPerson*>(&to_msg);
   auto& from = static_cast<const MsgPerson&>(from_msg);
-  // @@protoc_insertion_point(class_specific_merge_from_start:IM.MsgPerson)
+  // @@protoc_insertion_point(class_specific_merge_from_start:MsgPerson)
   GOOGLE_DCHECK_NE(&from, _this);
   uint32_t cached_has_bits = 0;
   (void) cached_has_bits;
@@ -233,7 +230,7 @@ void MsgPerson::MergeImpl(::PROTOBUF_NAMESPACE_ID::Message& to_msg, const ::PROT
 }
 
 void MsgPerson::CopyFrom(const MsgPerson& from) {
-// @@protoc_insertion_point(class_specific_copy_from_start:IM.MsgPerson)
+// @@protoc_insertion_point(class_specific_copy_from_start:MsgPerson)
   if (&from == this) return;
   Clear();
   MergeFrom(from);
@@ -256,11 +253,10 @@ void MsgPerson::InternalSwap(MsgPerson* other) {
 }
 
 // @@protoc_insertion_point(namespace_scope)
-}  // namespace IM
 PROTOBUF_NAMESPACE_OPEN
-template<> PROTOBUF_NOINLINE ::IM::MsgPerson*
-Arena::CreateMaybeMessage< ::IM::MsgPerson >(Arena* arena) {
-  return Arena::CreateMessageInternal< ::IM::MsgPerson >(arena);
+template<> PROTOBUF_NOINLINE ::MsgPerson*
+Arena::CreateMaybeMessage< ::MsgPerson >(Arena* arena) {
+  return Arena::CreateMessageInternal< ::MsgPerson >(arena);
 }
 PROTOBUF_NAMESPACE_CLOSE
 

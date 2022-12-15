@@ -1,5 +1,4 @@
 syntax = "proto3";
-package IM;
 message MsgPerson
 {
     uint32 id = 1;
