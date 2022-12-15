@@ -13,9 +13,11 @@ jobs:
         os: [windows-latest]
       
     runs-on: ${{ matrix.os }}
+    
     steps:
-      - uses: PxyUp/protoc-actions@v3.0.0
+      
       - name: Install Protoc
+        uses: PxyUp/protoc-actions@v3.0.0
         with:
           path: -I./ --go_opt=paths=source_relative --go_out=./generated cmakepresets/test.proto
           
