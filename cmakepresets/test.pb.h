@@ -44,17 +44,20 @@ struct TableStruct_test_2eproto {
   static const uint32_t offsets[];
 };
 extern const ::PROTOBUF_NAMESPACE_ID::internal::DescriptorTable descriptor_table_test_2eproto;
+namespace IM {
 class MsgPerson;
 struct MsgPersonDefaultTypeInternal;
 extern MsgPersonDefaultTypeInternal _MsgPerson_default_instance_;
+}  // namespace IM
 PROTOBUF_NAMESPACE_OPEN
-template<> ::MsgPerson* Arena::CreateMaybeMessage<::MsgPerson>(Arena*);
+template<> ::IM::MsgPerson* Arena::CreateMaybeMessage<::IM::MsgPerson>(Arena*);
 PROTOBUF_NAMESPACE_CLOSE
+namespace IM {
 
 // ===================================================================
 
 class MsgPerson final :
-    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:MsgPerson) */ {
+    public ::PROTOBUF_NAMESPACE_ID::Message /* @@protoc_insertion_point(class_definition:IM.MsgPerson) */ {
  public:
   inline MsgPerson() : MsgPerson(nullptr) {}
   ~MsgPerson() override;
@@ -157,7 +160,7 @@ class MsgPerson final :
   private:
   friend class ::PROTOBUF_NAMESPACE_ID::internal::AnyMetadata;
   static ::PROTOBUF_NAMESPACE_ID::StringPiece FullMessageName() {
-    return "MsgPerson";
+    return "IM.MsgPerson";
   }
   protected:
   explicit MsgPerson(::PROTOBUF_NAMESPACE_ID::Arena* arena,
@@ -174,23 +177,18 @@ class MsgPerson final :
   // accessors -------------------------------------------------------
 
   enum : int {
-    kNameFieldNumber = 1,
+    kIdFieldNumber = 1,
   };
-  // string name = 1;
-  void clear_name();
-  const std::string& name() const;
-  template <typename ArgT0 = const std::string&, typename... ArgT>
-  void set_name(ArgT0&& arg0, ArgT... args);
-  std::string* mutable_name();
-  PROTOBUF_NODISCARD std::string* release_name();
-  void set_allocated_name(std::string* name);
+  // uint32 id = 1;
+  void clear_id();
+  uint32_t id() const;
+  void set_id(uint32_t value);
   private:
-  const std::string& _internal_name() const;
-  inline PROTOBUF_ALWAYS_INLINE void _internal_set_name(const std::string& value);
-  std::string* _internal_mutable_name();
+  uint32_t _internal_id() const;
+  void _internal_set_id(uint32_t value);
   public:
 
-  // @@protoc_insertion_point(class_scope:MsgPerson)
+  // @@protoc_insertion_point(class_scope:IM.MsgPerson)
  private:
   class _Internal;
 
@@ -198,7 +196,7 @@ class MsgPerson final :
   typedef void InternalArenaConstructable_;
   typedef void DestructorSkippable_;
   struct Impl_ {
-    ::PROTOBUF_NAMESPACE_ID::internal::ArenaStringPtr name_;
+    uint32_t id_;
     mutable ::PROTOBUF_NAMESPACE_ID::internal::CachedSize _cached_size_;
   };
   union { Impl_ _impl_; };
@@ -215,54 +213,24 @@ class MsgPerson final :
 #endif  // __GNUC__
 // MsgPerson
 
-// string name = 1;
-inline void MsgPerson::clear_name() {
-  _impl_.name_.ClearToEmpty();
+// uint32 id = 1;
+inline void MsgPerson::clear_id() {
+  _impl_.id_ = 0u;
 }
-inline const std::string& MsgPerson::name() const {
-  // @@protoc_insertion_point(field_get:MsgPerson.name)
-  return _internal_name();
+inline uint32_t MsgPerson::_internal_id() const {
+  return _impl_.id_;
 }
-template <typename ArgT0, typename... ArgT>
-inline PROTOBUF_ALWAYS_INLINE
-void MsgPerson::set_name(ArgT0&& arg0, ArgT... args) {
- 
- _impl_.name_.Set(static_cast<ArgT0 &&>(arg0), args..., GetArenaForAllocation());
-  // @@protoc_insertion_point(field_set:MsgPerson.name)
+inline uint32_t MsgPerson::id() const {
+  // @@protoc_insertion_point(field_get:IM.MsgPerson.id)
+  return _internal_id();
 }
-inline std::string* MsgPerson::mutable_name() {
-  std::string* _s = _internal_mutable_name();
-  // @@protoc_insertion_point(field_mutable:MsgPerson.name)
-  return _s;
-}
-inline const std::string& MsgPerson::_internal_name() const {
-  return _impl_.name_.Get();
-}
-inline void MsgPerson::_internal_set_name(const std::string& value) {
+inline void MsgPerson::_internal_set_id(uint32_t value) {
   
-  _impl_.name_.Set(value, GetArenaForAllocation());
+  _impl_.id_ = value;
 }
-inline std::string* MsgPerson::_internal_mutable_name() {
-  
-  return _impl_.name_.Mutable(GetArenaForAllocation());
-}
-inline std::string* MsgPerson::release_name() {
-  // @@protoc_insertion_point(field_release:MsgPerson.name)
-  return _impl_.name_.Release();
-}
-inline void MsgPerson::set_allocated_name(std::string* name) {
-  if (name != nullptr) {
-    
-  } else {
-    
-  }
-  _impl_.name_.SetAllocated(name, GetArenaForAllocation());
-#ifdef PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  if (_impl_.name_.IsDefault()) {
-    _impl_.name_.Set("", GetArenaForAllocation());
-  }
-#endif // PROTOBUF_FORCE_COPY_DEFAULT_STRING
-  // @@protoc_insertion_point(field_set_allocated:MsgPerson.name)
+inline void MsgPerson::set_id(uint32_t value) {
+  _internal_set_id(value);
+  // @@protoc_insertion_point(field_set:IM.MsgPerson.id)
 }
 
 #ifdef __GNUC__
@@ -271,6 +239,7 @@ inline void MsgPerson::set_allocated_name(std::string* name) {
 
 // @@protoc_insertion_point(namespace_scope)
 
+}  // namespace IM
 
 // @@protoc_insertion_point(global_scope)
 
