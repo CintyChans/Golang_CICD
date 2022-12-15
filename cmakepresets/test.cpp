@@ -13,6 +13,7 @@ using namespace std;
 #include <fstream>
 #include <asio.hpp>
 #include "test.pb.h"
+#include "test.pb.cc"
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
 using IM::MsgPerson;
@@ -61,9 +62,6 @@ void connlost(void *context, char *cause)
 int main(){
     MsgPerson person;
     person.set_id(1);
-    string serializeToStr;
-    person.SerializeToString(&serializeToStr);
-    cout <<"序列化后的字节："<< serializeToStr << endl;
     std::cout << person.id() << std::endl;
     return 0;
 }
