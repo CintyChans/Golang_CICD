@@ -22,7 +22,7 @@ using json = nlohmann::json;
 int main(int argc, char* argv[])
 {
     MsgPerson person;
-    person.set_name('john');
+    person.set_name(1);
     std::cout << person.name() << std::endl;
     argparse::ArgumentParser parser("example", "Argument parser example");
     parser.add_argument("test").default_value('test');
