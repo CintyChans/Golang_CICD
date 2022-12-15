@@ -35,7 +35,7 @@ find_package(asio CONFIG REQUIRED)
 target_link_libraries(main PRIVATE asio asio::asio)
 
 find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
-target_link_libraries(resr PRIVATE eclipse-paho-mqtt-c::paho-mqtt3a eclipse-paho-mqtt-c::paho-mqtt3c eclipse-paho-mqtt-c::paho-mqtt3as eclipse-paho-mqtt-c::paho-mqtt3cs)
+target_link_libraries(main PRIVATE eclipse-paho-mqtt-c::paho-mqtt3a eclipse-paho-mqtt-c::paho-mqtt3c eclipse-paho-mqtt-c::paho-mqtt3as eclipse-paho-mqtt-c::paho-mqtt3cs)
 
 
 set_property(TARGET main PROPERTY CXX_STANDARD 20)
