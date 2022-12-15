@@ -56,6 +56,9 @@ jobs:
       - name: List $RUNNER_WORKSPACE after build
         run: find $RUNNER_WORKSPACE
         shell: bash
+       
+      - name: test exe
+        run : ${{ github.workspace }}/cmakepresets/builds/ninja-multi-vcpkg/Debug/main.exe
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
