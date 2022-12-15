@@ -13,15 +13,17 @@
 #include <stdlib.h>
 #include <string.h>
 #include "MQTTClient.h"
+#include "test.pb.h"
 using namespace Eigen;
 using namespace std;
 using namespace argparse;
 using json = nlohmann::json;
 
-
-
 int main(int argc, char* argv[])
 {
+    MsgPerson person;
+    person.set_name('john');
+    std::cout << person << std::endl;
     argparse::ArgumentParser parser("example", "Argument parser example");
     parser.add_argument("test").default_value('test');
     std::cout << parser << std::endl;
