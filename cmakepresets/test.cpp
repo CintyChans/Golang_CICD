@@ -23,7 +23,7 @@ int main(int argc, char* argv[])
 {
     MsgPerson person;
     person.set_name('john');
-    std::cout << person << std::endl;
+    std::cout << person.name() << std::endl;
     argparse::ArgumentParser parser("example", "Argument parser example");
     parser.add_argument("test").default_value('test');
     std::cout << parser << std::endl;
