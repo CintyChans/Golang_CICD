@@ -152,7 +152,7 @@ int main(int argc, char* argv[])
 destroy_exit:
     MQTTClient_destroy(&client);
 exit:
-    return rc;
+    return 0;
 }
 
 
