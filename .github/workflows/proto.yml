@@ -1,0 +1,30 @@
+name: Python application
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+    
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: [windows-latest]
+      
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Protoc
+        uses: arduino/setup-protoc@v1
+        with:
+          version: '3.x'
+          include-pre-releases: true
+          
+          run: protoc ./cmakepresets/test.proto --cpp_out=./    
+          
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-${{ matrix.os }}
+          path: .
