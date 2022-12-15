@@ -42,7 +42,7 @@ jobs:
       - name: Run CMake with Ninja
         uses: lukka/run-cmake@v10
         with:
-          cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeList.txt' 
+          cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeLists.txt' 
           configurePreset: 'ninja-multi-vcpkg'
           buildPreset: 'ninja-multi-vcpkg'
 
