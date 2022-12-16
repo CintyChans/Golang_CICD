@@ -8,7 +8,7 @@
     "argparse",
     "spdlog",
     "protobuf",
-    "nlohmann-json,
+    "nlohmann-json",
     "paho-mqtt",
     "asio"
   ]
