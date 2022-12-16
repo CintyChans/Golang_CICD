@@ -1,7 +1,7 @@
 if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
   set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "The vcpkg triplet")
 endif()
-
+project(test)
 set(CMAKE_CXX_FLAGS_RELEASE "/MT")
 set(CMAKE_CXX_FLAGS_DEBUG "/MTd")
 SET(CMAKE_BUILD_TYPE "Release")
@@ -10,7 +10,7 @@ cmake_minimum_required(VERSION 3.0)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
 set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
-project(test)
+
 add_executable(main)
 target_sources(main PRIVATE test.cpp)
 
