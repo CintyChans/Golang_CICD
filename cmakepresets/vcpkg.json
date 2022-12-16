@@ -2,14 +2,14 @@
   "name": "example",
   "version-string": "latest",
   "dependencies": [
-    "fmt:x64-windows-static",
-    "gtest:x64-windows-static",
-    "eigen3:x64-windows-static",
-    "argparse:x64-windows-static",
-    "spdlog:x64-windows-static",
-    "protobuf:x64-windows-static",
-    "nlohmann-json:x64-windows-static",
-    "paho-mqtt:x64-windows-static",
-    "asio:x64-windows-static"
+    "fmt",
+    "gtest",
+    "eigen3",
+    "argparse",
+    "spdlog",
+    "protobuf",
+    "nlohmann-json,
+    "paho-mqtt",
+    "asio"
   ]
 }
