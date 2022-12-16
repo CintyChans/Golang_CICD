@@ -15,9 +15,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [windows-latest]
-        include:
-          - os: "windows-latest"
+        os: [ windows-latest]
 
     steps:
       - uses: actions/checkout@v3
@@ -60,5 +58,5 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-windows
-          path: ${{ github.workspace }}/cmakepresets/builds
+          path: ${{ github.workspace }}/cmakepresets
         
