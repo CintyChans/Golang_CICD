@@ -1,6 +1,9 @@
 if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
   set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "The vcpkg triplet")
 endif()
+
+set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} /MT")
+set(CMAKE_CXX_FLAGS_DEBUG "${CMAKE_CXX_FLAGS_DEBUG} /MTd")
 SET(CMAKE_BUILD_TYPE "Release")
 cmake_minimum_required(VERSION 3.0)
 project(test)
@@ -38,4 +41,3 @@ find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
 target_link_libraries(main PRIVATE eclipse-paho-mqtt-c::paho-mqtt3a eclipse-paho-mqtt-c::paho-mqtt3c eclipse-paho-mqtt-c::paho-mqtt3as eclipse-paho-mqtt-c::paho-mqtt3cs)
 
 
-set_property(TARGET main PROPERTY CXX_STANDARD 20)
