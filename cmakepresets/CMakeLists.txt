@@ -1,25 +1,16 @@
 
-
-set(CMAKE_BUILD_TYPE "Release")
-cmake_minimum_required(VERSION 3.0)
-if(MSVC)
-    add_compile_options(
-        $<$<CONFIG:>:/MT> #---------|
-        $<$<CONFIG:Debug>:/MTd> #---|-- Statically link the runtime libraries
-        $<$<CONFIG:Release>:/MT> #--|
-    )
-endif()
-
+cmake_minimum_required(VERSION 3.15.0)
+if (POLICY CMP0091)
+  cmake_policy(SET CMP0091 NEW)
+endif (POLICY CMP0091)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
 set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 project(test)
 
 add_executable(main)
-target_sources(main PRIVATE test.cpp)
 set_property(TARGET main PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-
-
+target_sources(main PRIVATE test.cpp)
 find_package(GTest CONFIG REQUIRED)
 target_link_libraries(main PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
 
