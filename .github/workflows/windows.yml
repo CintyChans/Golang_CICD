@@ -62,10 +62,10 @@ jobs:
         shell: bash
        
       - name: add vcdll 
-        run : xcopy "C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Redist\MSVC\14.34.31933\debug_nonredist\x64"  "${{ github.workspace }}/cmakepresets/builds"
+        run : xcopy "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/VC/Redist/MSVC/14.34.31933/debug_nonredist/x64"  "${{ github.workspace }}/cmakepresets/builds"
      
       - name: add vcucrt 
-        run : xcopy "C:\Program Files (x86)\Windows Kits\10\include\10.0.22621.0\ucrt"  "${{ github.workspace }}/cmakepresets/builds"
+        run : xcopy "C:/Program Files (x86)/Windows Kits/10/include/10.0.22621.0/ucrt"  "${{ github.workspace }}/cmakepresets/builds"
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
