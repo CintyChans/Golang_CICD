@@ -1,10 +1,14 @@
-if(DEFINED ENV{VCPKG_DEFAULT_TRIPLET} AND NOT DEFINED VCPKG_TARGET_TRIPLET)
-  set(VCPKG_TARGET_TRIPLET "$ENV{VCPKG_DEFAULT_TRIPLET}" CACHE STRING "The vcpkg triplet")
-endif()
 
 
 set(CMAKE_BUILD_TYPE "Release")
 cmake_minimum_required(VERSION 3.0)
+if(MSVC)
+    add_compile_options(
+        $<$<CONFIG:>:/MT> #---------|
+        $<$<CONFIG:Debug>:/MTd> #---|-- Statically link the runtime libraries
+        $<$<CONFIG:Release>:/MT> #--|
+    )
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
