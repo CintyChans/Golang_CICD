@@ -29,6 +29,6 @@ jobs:
        
       - name: add vcdll 
         run : |
-          xcopy C:/Windows/system32/msvcp140*   ${{ github.workflow }}
-          ls  ${{ github.workflow }}
+          xcopy C:/Windows/system32/msvcp140*  ./
+          ls  
         
