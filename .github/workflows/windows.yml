@@ -29,7 +29,7 @@ jobs:
           submodules: true
        
       - name: ${{ matrix.os }}
-        if: ${{ matrix.os }}=window-latest
+        if: matrix.os=window-latest
         run : |
           copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
           copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
