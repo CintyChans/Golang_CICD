@@ -63,9 +63,9 @@ jobs:
        
       - name: add vcdll 
         run : |
-          copy C:/\Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-          copy C:/\Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-          copy C:/\Windows/system32/ucrtbase*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+          copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+          copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+          copy C:/Windows/system32/ucrtbase*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
         
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
