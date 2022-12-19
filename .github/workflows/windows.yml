@@ -55,6 +55,7 @@ jobs:
 
        
       - name: add vcdll 
+        if: ${{ matrix.os }}='windows-latest'
         run : |
           copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
           copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
