@@ -16,7 +16,7 @@ using namespace std;
 #include "test.pb.cc"
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
-
+using namespace test::proto;
 
 using namespace Eigen;
 using namespace argparse;
