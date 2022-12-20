@@ -9,10 +9,10 @@ set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 project(test)
 set(PROTO_IN  test.proto)
 set(PROTO_SRC test.pb.cc)
-set(PROTO_OUT test.pb.h test.pb.cc test/)
-
+set(PROTO_OUT test.pb.h test.pb.cc .)
+find_package(protobuf CONFIG REQUIRED)
 add_custom_command(
-    OUTPUT ${PROTO_OUT}
+    OUTPUT ./cmakepresets
     COMMAND protoc --cpp_out .  ${PROTO_IN}
     DEPENDS ${PROTO_IN}
 )
