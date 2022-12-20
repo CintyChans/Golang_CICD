@@ -10,6 +10,7 @@
     "protobuf",
     "nlohmann-json",
     "paho-mqtt",
-    "asio"
+    "asio",
+    "pthread"
   ]
 }
