@@ -7,25 +7,10 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
 set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 project(test)
-set(PROTO_IN  test.proto)
-set(PROTO_SRC test.pb.cc)
-set(PROTO_OUT test.pb.h test.pb.cc test/)
-find_package(protobuf CONFIG REQUIRED)
-add_custom_command(
-    OUTPUT ${PROTO_OUT}
-    COMMAND protoc --cpp_out .  ${PROTO_IN}
-    DEPENDS ${PROTO_IN}
-)
-add_custom_target(proto DEPENDS ${PROTO_OUT})
 
-aux_source_directory(. SRC_LIST)
-list(APPEND SRC_LIST
-    ${PROTO_SRC}
-)
 
-set(CMAKE_VERBOSE_MAKEFILE on)
 add_executable(main ${SRC_LIST})
-add_dependencies(main proto)
+
 set_property(TARGET main PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 target_sources(main PRIVATE test.cpp)
 find_package(GTest CONFIG REQUIRED)
