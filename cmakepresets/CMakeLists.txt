@@ -7,8 +7,25 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
 set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 project(test)
+set(PROTO_IN  test.proto)
+set(PROTO_SRC test.pb.cc)
+set(PROTO_OUT test.pb.h test.pb.cc test/)
 
-add_executable(main)
+add_custom_command(
+    OUTPUT ${PROTO_OUT}
+    COMMAND protoc --cpp_out .  ${PROTO_IN}
+    DEPENDS ${PROTO_IN}
+)
+add_custom_target(proto DEPENDS ${PROTO_OUT})
+
+aux_source_directory(. SRC_LIST)
+list(APPEND SRC_LIST
+    ${PROTO_SRC}
+)
+
+set(CMAKE_VERBOSE_MAKEFILE on)
+add_executable(main ${SRC_LIST})
+add_dependencies(main proto)
 set_property(TARGET main PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 target_sources(main PRIVATE test.cpp)
 find_package(GTest CONFIG REQUIRED)
@@ -38,4 +55,4 @@ target_link_libraries(main PRIVATE asio asio::asio)
 find_package(eclipse-paho-mqtt-c CONFIG REQUIRED)
 target_link_libraries(main PRIVATE eclipse-paho-mqtt-c::paho-mqtt3a eclipse-paho-mqtt-c::paho-mqtt3c eclipse-paho-mqtt-c::paho-mqtt3as eclipse-paho-mqtt-c::paho-mqtt3cs)
 
-
+target_link_libraries(main protobuf)
