@@ -15,21 +15,47 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [macos-10.15,ubuntu-20.04,windows-latest]
+        os: [windows-latest]
         include:
-          - os: "macos-10.15"
-            vcpkgCommitId: '253704407ae68efa37bf8f5b59b3e06dd40d3d3f'
-          - os: "ubuntu-20.04"
-            vcpkgCommitId: '253704407ae68efa37bf8f5b59b3e06dd40d3d3f'
           - os: "windows-latest"
             vcpkgCommitId: '253704407ae68efa37bf8f5b59b3e06dd40d3d3f'
+            triplet: x64-windows-static
+    env:
+      VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
+
     steps:
       - uses: actions/checkout@v3
         with:
           submodules: true
+
+          
+      - uses: lukka/get-cmake@latest
+      - name: List $RUNNER_WORKSPACE before build
+        run: find $RUNNER_WORKSPACE
+        shell: bash
+
+      - name: Restore artifacts, or run vcpkg, build (and cache artifacts as post step)
+        uses: lukka/run-vcpkg@v10
+        id: runvcpkg
+        with:
+          vcpkgDirectory: '${{ runner.workspace }}/b/vcpkg'
+          vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
+          # Run vcpkg with the command specified by the `runVcpkgFormatString` input.
+          runVcpkgInstall: true
+          vcpkgJsonGlob: '**/cmakepresets/vcpkg.json'
+          appendedCacheKey: vcpkginstall
+
+      - name: Run CMake with Ninja
+        uses: lukka/run-cmake@v10
+        with:
+          cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeLists.txt' 
+          configurePreset: 'ninja-multi-vcpkg'
+          buildPreset: 'ninja-multi-vcpkg'
+        
+
        
-      - name: ${{ matrix.os }}
-        if: matrix.os == 'windows-latest'
+      - name: add vcdll 
+        if: ${{ matrix.os }}='windows-latest'
         run : |
           copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
           copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
