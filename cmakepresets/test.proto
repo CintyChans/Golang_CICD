@@ -1,6 +1,6 @@
 
 syntax = "proto3";
-package test.proto;
+
 message MsgPerson
 {
     uint32 id = 1;
