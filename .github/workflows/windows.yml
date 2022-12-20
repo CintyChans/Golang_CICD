@@ -46,7 +46,7 @@ jobs:
           appendedCacheKey: vcpkginstall
 
       - name: protoc cpp
-        run:  ${{ VCPKG_ROOT }}/installed/install${{ matrix.triplet }}/tools/protobuf/protoc.exe --cpp_out=${{ github.workspace }}/cmakepresets/ .${{ github.workspace }}/cmakepresets/test.proto
+        run:  ${{ runner.workspace }}/b/vcpkg/installed/install${{ matrix.triplet }}/tools/protobuf/protoc.exe --cpp_out=${{ github.workspace }}/cmakepresets/ .${{ github.workspace }}/cmakepresets/test.proto
  
       - name: Run CMake with Ninja
         uses: lukka/run-cmake@v10
