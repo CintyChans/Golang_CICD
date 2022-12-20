@@ -46,26 +46,6 @@ jobs:
           appendedCacheKey: vcpkginstall
 
       - name: protoc cpp
-        run:  ${{ runner.workspace }}/b/vcpkg/installed/x64-windows/tools/protobuf/protoc.exe --cpp_out=${{ github.workspace }}/cmakepresets/ .${{ github.workspace }}/cmakepresets/test.proto
+        run:  ls ${{ runner.workspace }}/b/vcpkg
  
-      - name: Run CMake with Ninja
-        uses: lukka/run-cmake@v10
-        with:
-          cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeLists.txt' 
-          configurePreset: 'ninja-multi-vcpkg'
-          buildPreset: 'ninja-multi-vcpkg'
-        
 
-       
-      - name: add vcdll 
-        if: ${{ matrix.os }}='windows-latest'
-        run : |
-          copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-          copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-          copy C:/Windows/system32/ucrtbase*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-        
-      - name: Upload Artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: test-windows
-          path: ./cmakepresets/builds/ninja-multi-vcpkg/Debug
