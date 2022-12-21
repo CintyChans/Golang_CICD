@@ -46,5 +46,5 @@ jobs:
           appendedCacheKey: vcpkginstall
 
       - name: protoc cpp
-        run:  ls D:\a\windows_c_action\windows_c_action\cmakepresets
+        run:  ls D:\a\windows_c_action\b\vcpkg
 
