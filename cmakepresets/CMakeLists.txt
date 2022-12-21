@@ -5,12 +5,22 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_FLAGS"${CMAKE_CXX_FLAGS} /std:c++17")
 set(nlohmann-json_IMPLICIT_CONVERSIONS OFF)
 project(test)
+find_package(Protobuf REQUIRED)
 
+# check if protobuf was found
+if(PROTOBUF_FOUND)
+    message ("protobuf found")
+else()
+    message (FATAL_ERROR "Cannot find Protobuf")
+endif()
+PROTOBUF_GENERATE_CPP(PROTO_SRCS PROTO_HDRS test.proto)
+message ("PROTO_SRCS = ${PROTO_SRCS}")
+message ("PROTO_HDRS = ${PROTO_HDRS}")
+add_executable(main test.cpp ${PROTO_SRCS} ${PROTO_HDRS} )
+target_include_directories(main PUBLIC ${PROTOBUF_INCLUDE_DIRS} ${CMAKE_CURRENT_BINARY_DIR})
 
-add_executable(main ${SRC_LIST})
-
-set_property(TARGET main PROPERTY MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
-target_sources(main PRIVATE test.cpp)
+# link the exe against the libraries
+target_link_libraries(main PUBLIC ${PROTOBUF_LIBRARIES})
 find_package(GTest CONFIG REQUIRED)
 target_link_libraries(main PRIVATE GTest::gmock GTest::gtest GTest::gmock_main GTest::gtest_main)
 
@@ -26,8 +36,6 @@ target_link_libraries(main PRIVATE fmt::fmt)
 find_package(spdlog CONFIG REQUIRED)
 target_link_libraries(main PRIVATE spdlog::spdlog spdlog::spdlog_header_only)
 
-find_package(protobuf CONFIG REQUIRED)
-target_link_libraries(main PRIVATE protobuf::libprotoc protobuf::libprotobuf protobuf::libprotobuf-lite)
 
 find_package(nlohmann_json CONFIG REQUIRED)
 target_link_libraries(main PRIVATE nlohmann_json::nlohmann_json)
