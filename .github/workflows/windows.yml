@@ -45,6 +45,24 @@ jobs:
           vcpkgJsonGlob: '**/cmakepresets/vcpkg.json'
           appendedCacheKey: vcpkginstall
 
-      - name: protoc cpp
-        run:  ls D:\a\windows_c_action\b\vcpkg\packages\detect_compiler_x64-windows-static
+      - name: Run CMake with Ninja
+        uses: lukka/run-cmake@v10
+        with:
+          cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeLists.txt' 
+          configurePreset: 'ninja-multi-vcpkg'
+          buildPreset: 'ninja-multi-vcpkg'
+        
 
+       
+      - name: add vcdll 
+        if: ${{ matrix.os }}='windows-latest'
+        run : |
+          copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+          copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+          copy C:/Windows/system32/ucrtbase*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
+        
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-windows
+          path: ./cmakepresets/builds/ninja-multi-vcpkg/Debug
