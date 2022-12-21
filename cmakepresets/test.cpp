@@ -13,7 +13,6 @@ using namespace std;
 #include <fstream>
 #include <asio.hpp>
 #include "test.pb.h"
-#include "test.pb.cc"
 #include <nlohmann/json.hpp>
 #include <gtest/gtest.h>
 
