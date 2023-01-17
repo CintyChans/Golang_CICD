@@ -9,7 +9,7 @@ on:
 
 jobs:
   job:
-    name: ${github.event.ref}
+    name: ${{github.event.ref}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
