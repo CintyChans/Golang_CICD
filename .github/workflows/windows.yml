@@ -21,10 +21,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Get Branch
-        run: |
-         raw=$(git branch -r --contains ${{ github.ref }})
-         branch=${raw/origin\/}
-         echo ::set-env name=BRANCH::$branch
-      - run: echo ${{ env.BRANCH }}
+      - run: echo ${github.event.ref}
 
           
