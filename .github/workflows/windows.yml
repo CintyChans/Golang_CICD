@@ -4,8 +4,7 @@ name: hosted-ninja-vcpkg_submod-autocache
 on:
   push:
     branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    tags:  v1.*
 
 
 jobs:
