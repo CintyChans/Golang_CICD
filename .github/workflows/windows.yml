@@ -13,7 +13,6 @@ jobs:
     name: ${{ matrix.os }}-${{ github.workflow }}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false
       matrix:
         os: [windows-latest]
 
@@ -21,6 +20,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Get Branch
-      - run: echo ${github.event.ref}
+        run: echo ${github.event.ref}
 
           
