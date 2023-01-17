@@ -16,58 +16,15 @@ jobs:
       fail-fast: false
       matrix:
         os: [windows-latest]
-        include:
-          - os: "windows-latest"
-            vcpkgCommitId: '253704407ae68efa37bf8f5b59b3e06dd40d3d3f'
-            triplet: x64-windows-static
-    env:
-      VCPKG_DEFAULT_TRIPLET: ${{ matrix.triplet }}
+
 
     steps:
       - uses: actions/checkout@v3
-
-      - name: Set output
-        id: vars
-        run: echo ::set-output name=short_ref::${GITHUB_REF#refs/*/}
-
-      - name: Check output
-        run: echo ${{ steps.vars.outputs.short_ref }}
+      - name: Get Branch
+        run: |
+         raw=$(git branch -r --contains ${{ github.ref }})
+         branch=${raw/origin\/}
+         echo ::set-env name=BRANCH::$branch
+      - run: echo ${{ env.BRANCH }}
 
           
-#       - uses: lukka/get-cmake@latest
-#       - name: List $RUNNER_WORKSPACE before build
-#         run: find $RUNNER_WORKSPACE
-#         shell: bash
-
-#       - name: Restore artifacts, or run vcpkg, build (and cache artifacts as post step)
-#         uses: lukka/run-vcpkg@v10
-#         id: runvcpkg
-#         with:
-#           vcpkgDirectory: '${{ runner.workspace }}/b/vcpkg'
-#           vcpkgGitCommitId: '${{ matrix.vcpkgCommitId }}'
-#           # Run vcpkg with the command specified by the `runVcpkgFormatString` input.
-#           runVcpkgInstall: true
-#           vcpkgJsonGlob: '**/cmakepresets/vcpkg.json'
-#           appendedCacheKey: vcpkginstall
-
-#       - name: Run CMake with Ninja
-#         uses: lukka/run-cmake@v10
-#         with:
-#           cmakeListsTxtPath: '${{ github.workspace }}/cmakepresets/CMakeLists.txt' 
-#           configurePreset: 'ninja-multi-vcpkg'
-#           buildPreset: 'ninja-multi-vcpkg'
-        
-
-       
-#       - name: add vcdll 
-#         if: ${{ matrix.os }}='windows-latest'
-#         run : |
-#           copy C:/Windows/system32/msvcp140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-#           copy C:/Windows/system32/vcruntime140*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-#           copy C:/Windows/system32/ucrtbase*  ./cmakepresets/builds/ninja-multi-vcpkg/Debug
-        
-#       - name: Upload Artifacts
-#         uses: actions/upload-artifact@v3
-#         with:
-#           name: test-windows
-#           path: ./cmakepresets/builds/ninja-multi-vcpkg/Debug
