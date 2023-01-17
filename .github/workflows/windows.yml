@@ -14,4 +14,10 @@ jobs:
       - name: ${{github.ref_name}}
         uses: actions/checkout@v2
 
-
+      - name: Release
+        with:
+          tag_name: ${{ github.ref }}
+          name:  ${{ github.ref }}
+          body: TODO New Release.
+          draft: false
+          prerelease: false
