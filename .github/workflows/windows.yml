@@ -9,7 +9,7 @@ on:
 
 jobs:
   job:
-    name: ${{GITHUB_REF#refs/heads/}}
+    name: ${{github.ref#refs/heads/}}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
