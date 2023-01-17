@@ -19,6 +19,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Get Branch
-        run: echo ${github.event.ref}
+        run: echo -e "${github.event.ref}"
 
           
