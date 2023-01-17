@@ -9,7 +9,7 @@ on:
 
 jobs:
   job:
-    name: ${{ matrix.os }}-${{ github.workflow }}
+    name: ${github.event.ref}
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -18,7 +18,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Get Branch
-        run: echo -e "${github.event.ref}"
+
 
           
