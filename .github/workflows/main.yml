@@ -19,7 +19,7 @@ jobs:
         with:
           in-file: releasenotes.md
           out-file: releasenotes.json
-          section: '## main'
+          section: 'main'
 
       - run: |
           cat releasenotes.json
