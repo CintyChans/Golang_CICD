@@ -24,6 +24,11 @@ jobs:
           tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
           os.system("echo 'EOF' >> $GITHUB_ENV")
           
-      - name: test
-        run:  echo  ${{env.NOTE}}
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{github.ref_name}}
+          name: ${{github.ref_name}}
+          body: ${{env.NOTE}}
+
 
