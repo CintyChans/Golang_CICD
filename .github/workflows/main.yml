@@ -17,7 +17,7 @@ jobs:
       - name: Markdown link extract to json
         uses: mipmip/github-action-markdown-link-extract-to-json@v1.5
         with:
-          in-file: releasenotes.md.md
+          in-file: releasenotes.md
           out-file: './releasenotes.json'
           section: '## main'
 
