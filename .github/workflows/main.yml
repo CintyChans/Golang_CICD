@@ -13,13 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3 
 
-      - uses: kkurno/action-markdown-reader@v0.1.0
-        id: markdown
+
+      - uses: markpatterson27/markdown-to-output@v1
+        id: md
         with:
-          markdown: releasenotes.md
+          filepath: releasenotes.md
 
       - run: |
-          echo  ${{ steps.markdown.outputs.data}}
-
+          echo ${{steps.md.outputs.body.main.text}}
 
 
