@@ -19,8 +19,7 @@ jobs:
           filepath: releasenotes.md
 
       - run: |
-          echo ${{ steps.md.outputs.attributes }}
-          echo ${{ steps.md.outputs.body }}
+          echo ${{ toJSON(steps.md.outputs.body) }}
 
 
       - name: Create Release
