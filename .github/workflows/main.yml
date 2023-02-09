@@ -18,7 +18,7 @@ jobs:
         uses: mipmip/github-action-markdown-link-extract-to-json@v1.5
         with:
           in-file: releasenotes.md
-          out-file: './releasenotes.json'
+          out-file: releasenotes.json
           section: '## main'
 
       - run: |
