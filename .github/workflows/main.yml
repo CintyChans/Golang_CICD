@@ -19,11 +19,7 @@ jobs:
           filepath: releasenotes.md
 
       - run: |
-          echo ${{ toJSON(steps.md.outputs.body) }}
+          echo ${{steps.md.outputs.body}}
 
 
-      - name: Create Release
-        uses: ntltd/release-generator@master
-        with:
-          templatePath: releasenotes.md
-          token: ${{ github.token }}
+
