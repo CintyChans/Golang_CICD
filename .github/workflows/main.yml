@@ -21,7 +21,10 @@ jobs:
           out-file: releasenotes.json
           section: 'main'
 
-      - run: |
-          cat releasenotes.json
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: releasenotes
+          path: releasenotes.json
 
 
