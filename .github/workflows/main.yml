@@ -19,7 +19,7 @@ jobs:
           filepath: releasenotes.md
 
       - run: |
-          echo ${{steps.md.outputs.body}}
+          echo ${{steps.md.outputs.body.main}}
 
 
 
