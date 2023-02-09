@@ -19,7 +19,7 @@ jobs:
           markdown: releasenotes.md
 
       - run: |
-          echo  ${{ toJSON(steps.markdown.outputs.data) }}
+          echo  ${{ steps.markdown.outputs.data}}
 
 
 
