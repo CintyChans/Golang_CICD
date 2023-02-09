@@ -16,7 +16,7 @@ jobs:
       - uses: kkurno/action-markdown-reader@v0.1.0
         id: markdown
         with:
-          filepath: releasenotes.md
+          markdown: releasenotes.md
 
       - run: |
           echo  ${{ toJSON(steps.markdown.outputs.data) }}
