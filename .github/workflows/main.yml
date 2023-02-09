@@ -19,7 +19,7 @@ jobs:
         run: |
           import re;import os;f=open('releasenotes.md',"r");r=re.findall(r'##.*', f.read(),re.DOTALL)[0].split('\n\n');f.close()
           r[1::2]=[i.split('- ')[1:] for i in r[1::2]];r[::2]=[i.split('## ')[1] for i in r[::2]];obj=dict(zip(r[::2],r[1::2]))
-          note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0];
+          note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0];print(note)
           os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
           tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
           os.system("echo 'EOF' >> $GITHUB_ENV")
