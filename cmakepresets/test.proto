@@ -1,7 +1,0 @@
-
-syntax = "proto3";
-
-message MsgPerson
-{
-    uint32 id = 1;
-}
