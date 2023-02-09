@@ -17,11 +17,10 @@ jobs:
       - name: note
         shell: python 
         run: |
-          import re;import os;f=open('releasenotes.md',"r");r=re.findall(r'##.*', f.read(),re.DOTALL)[0].split('\n\n');f.close()
-          r[1::2]=[i.split()[1::2] for i in r[1::2]];r[::2]=[i.split('## ')[1] for i in r[::2]];obj=dict(zip(r[::2],r[1::2]))
-          note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0];print(note)
+          import os;f=open('releasenotes.md',"r");obj={i[0].strip():i[1:] for i in [i.split('-') for i in f.read().split('##')[1:]]};f.close()
+          note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0]
           os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
-          tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n)) for n in note]
+          tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n.strip())) for n in note ]
           os.system("echo 'EOF' >> $GITHUB_ENV")
           
       - name: Create Release
