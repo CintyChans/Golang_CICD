@@ -25,5 +25,5 @@ jobs:
           os.system("echo 'EOF' >> $GITHUB_ENV")
           
       - name: test
-        run: echo"${{env.NOTE}}"
+        run:  echo  ${{env.NOTE}}
 
