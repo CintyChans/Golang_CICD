@@ -19,7 +19,7 @@ jobs:
           filepath: releasenotes.md
 
       - run: |
-          echo ${{ steps.md.outputs }}
+          echo ${{ steps.md.outputs.main }}
 
 
       - name: Create Release
