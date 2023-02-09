@@ -14,12 +14,14 @@ jobs:
       - uses: actions/checkout@v3 
 
 
-      - uses: markpatterson27/markdown-to-output@v1
-        id: md
+      - name: Markdown link extract to json
+        uses: mipmip/github-action-markdown-link-extract-to-json@v1.5
         with:
-          filepath: releasenotes.md
+          in-file: releasenotes.md.md
+          out-file: './releasenotes.json'
+          section: '## main'
 
       - run: |
-          echo ${{steps.md.outputs.body.main.text}}
+          cat releasenotes.json
 
 
