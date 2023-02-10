@@ -22,8 +22,8 @@ jobs:
           
       - name: dependancy
         run: |
+          go get google.golang.org/protobuf
           go mod tidy
-          go get -u google.golang.org/protobuf/protoc-gen-go
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run .\test.pb.go .\main.go
           
