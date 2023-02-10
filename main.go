@@ -70,9 +70,13 @@ func loginit() {
 func Process(conn net.Conn,n *sync.WaitGroup) string{
 	defer conn.Close() 
 	defer n.Done()
+
 	var buf []byte = make([]byte,128) 
 	for {
+		conn.SetReadDeadline(time.Now().Add(time.Second*2))
+		fmt.Println(1)
 		n,err := conn.Read(buf)
+		fmt.Println(2)
 		if err != nil {
 			log.Error(err)
 			break
@@ -83,16 +87,19 @@ func Process(conn net.Conn,n *sync.WaitGroup) string{
 	return string(buf[:len(buf)])
 }
 
-func ConnectClient(addr string,n *sync.WaitGroup){
-	defer n.Done()
+func ConnectClient(addr string){
 	var address = ":" + addr
-	conn, err := net.Dial("tcp", address)
-	if err != nil {
-		log.Error(err)
-		return
+	for{
+		conn, err := net.Dial("tcp", address)
+		if err != nil {
+			log.Error(err)
+			continue
+		}
+		conn.Write([]byte("hello world!"))
+		log.Info("Send msg:hello world!")
+		break 
 	}
-	conn.Write([]byte("hello world!"))
-	log.Info("Send msg:hello world!")
+	
 }
 
 func ListenServer(addr string,n *sync.WaitGroup)  {
@@ -102,8 +109,9 @@ func ListenServer(addr string,n *sync.WaitGroup)  {
 		log.Error(err)
 		return
 	}
-
+	log.Info("listen to","address")
 	conn, err := listen.Accept()
+	fmt.Println(3)
 	if err != nil {
 		log.Error("Tcp Accept() failed, err: ", err)
 		return	
@@ -134,10 +142,10 @@ func userVectors() {
 var myclient *Client
 
 func test_mqtt(n *sync.WaitGroup){
+	defer n.Done()
 	for i:=0;i<10;i++{
 		myclient.Publish("test",[]byte("hello mqtt"))
 	}
-	n.Done()
 }
 
 
@@ -151,10 +159,11 @@ func main(){
 	addr:=Parser()
 	myclient=Mqtt_Server()
 	myclient.Sub("test")
-	go_sync.Add(3)
+	go_sync.Add(2)
 	go test_mqtt(&go_sync)
+	go ConnectClient(addr)
 	go ListenServer(addr,&go_sync)
-	time.After(time.Second*5)
-	go ConnectClient(addr,&go_sync)
+	
+
 	go_sync.Wait()
 }
