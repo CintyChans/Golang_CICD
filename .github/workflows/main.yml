@@ -23,7 +23,7 @@ jobs:
       - name: dependancy
         run: |
           go mod tidy
-          protoc --proto_path=./  --go_out=./ ./test.proto
+          protoc --proto_path=./ --go_out=./proto  ./test.proto
           go run .\test.pb.go .\main.go
           
       - name: note
