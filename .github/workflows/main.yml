@@ -20,6 +20,9 @@ jobs:
       - name: dependancy
         run: |
           go mod download
+          go mod tidy
+          protoc --proto_path=./  --go_out=./ ./test.proto
+          go run .\test.pb.go .\main.go
           
       - name: note
         shell: python 
