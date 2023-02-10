@@ -40,17 +40,16 @@ jobs:
         run: go test -v  test.pb.go  main.go  main_test.go
         
       - name: build
-        run: go build -o ${{ matrix.os }} test.pb.go  main.go
+        if: github.ref_type=='tag' 
+        run: go build main
  
       - name: Upload Artifacts
-       
+        if: github.ref_type=='tag' 
         uses: actions/upload-artifact@v3
         with:
           name: test-${{ matrix.os }}
           path: ${{ matrix.os }}
           
- 
- 
  
       - name: download-artifact   
         if: github.ref_type=='tag' 
