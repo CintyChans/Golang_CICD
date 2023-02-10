@@ -20,11 +20,9 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: 'go.mod'
-          cache: true
           
       - name: dependancy
         run: |
-          go mod download
           go mod tidy
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run .\test.pb.go .\main.go
