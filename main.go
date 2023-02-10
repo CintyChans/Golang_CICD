@@ -75,7 +75,7 @@ func Process(conn net.Conn,n *sync.WaitGroup) string{
 		n,err := conn.Read(buf)
 		if err != nil {
 			log.Error(err)
-			continue
+			break
 		}
 		log.Info("Recieve msg:",string(buf[:n]))
 		break
@@ -154,7 +154,7 @@ func main(){
 	go_sync.Add(3)
 	go test_mqtt(&go_sync)
 	go ListenServer(addr,&go_sync)
-	time.After(time.Second*2)
+	time.After(time.Second*5)
 	go ConnectClient(addr,&go_sync)
 	go_sync.Wait()
 }
