@@ -22,7 +22,7 @@ jobs:
           
       - name: dependancy
         run: |
-          go get -u google.golang.org/protobuf/protoc-gen-go
+          go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
           go mod tidy
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run .\test.pb.go .\main.go
