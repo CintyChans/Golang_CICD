@@ -3,8 +3,6 @@ package main
 import (
 	"testing"
 	"google.golang.org/protobuf/proto"
-	"sync"
-	"time"
 )
 
 func TestProto(t *testing.T) {
