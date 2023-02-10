@@ -17,6 +17,10 @@ jobs:
         with:
           go-version-file: 'go.mod'
           
+      - name: dependancy
+        run: |
+          go mod download
+          
       - name: note
         shell: python 
         run: |
