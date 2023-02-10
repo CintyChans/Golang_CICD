@@ -19,10 +19,9 @@ jobs:
       - uses: actions/setup-go@v3
         with:
           go-version-file: 'go.mod'
-          
+  #     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest         
       - name: dependancy
         run: |
-    #     go install google.golang.org/protobuf/cmd/protoc-gen-go@latest
           go mod download
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run test.pb.go main.go
