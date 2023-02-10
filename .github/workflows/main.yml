@@ -1,15 +1,22 @@
-name: test markdown
+name: golang application
 
 
 on:
   push:
-    branches: [ "main" ]
-    tags:  v1.*
-
+   branches: ["main"]
+   tags: 
+     - v[0-9]+.[0-9]+
+     - v[0-9]+.[0-9]+.[0-9]+
+     - v[0-9]+.[0-9]+.[0-9]+.[0-9]+
+     
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  job:
+    strategy:
+      matrix:
+        os: [ubuntu-latest,windows-latest]
+
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v3 
       
@@ -25,10 +32,21 @@ jobs:
           go install google.golang.org/protobuf/cmd/protoc-gen-go@v1.28.1  
           go mod tidy
           protoc --proto_path=./  --go_out=./ ./test.proto
-          go run test.pb.go main.go
+     
+      - name: testing
+        run: go test -v  test.pb.go  main.go  main_test.go
+        
+      - name: build
+        run: go build -o ${{ matrix.os }} test.pb.go  main.go
           
-          
+      - name: download-artifact   
+
+        uses: actions/download-artifact@v3
+        with: 
+          path: ./artifact/        
+
       - name: note
+        if: github.ref_type=='tag' 
         shell: python 
         run: |
           import os;f=open('releasenotes.md',"r");obj={i[0].strip():i[1:] for i in [i.split('-') for i in f.read().split('##')[1:]]};f.close()
@@ -38,10 +56,13 @@ jobs:
           os.system("echo 'EOF' >> $GITHUB_ENV")
           
       - name: Create Release
+        if: github.ref_type=='tag' 
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{github.ref_name}}
           name: ${{github.ref_name}}
           body: ${{env.NOTE}}
-
+          prerelease: false
+          files: ./artifact/test-${{ matrix.os }}/*
+          draft: false
 
