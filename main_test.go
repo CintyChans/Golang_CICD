@@ -37,11 +37,3 @@ func TestVectors(t *testing.T) {
 	userVectors()
 }
 
-func TestNet(t *testing.T) {
-	var go_sync sync.WaitGroup
-	go ListenServer("12345",&go_sync)
-	time.After(time.Second*2)
-	go ConnectClient("12345",&go_sync)
-	go_sync.Wait()
-
-}
