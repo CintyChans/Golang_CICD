@@ -12,10 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3 
-      - name: Install Protoc
-        uses: arduino/setup-protoc@v1
-        with:
-          version: '3.21.6'
+
            
       - uses: actions/setup-go@v3
         with:
