@@ -41,12 +41,23 @@ jobs:
         
       - name: build
         run: go build -o ${{ matrix.os }} test.pb.go  main.go
+ 
+      - name: Upload Artifacts
+       
+        uses: actions/upload-artifact@v3
+        with:
+          name: test-${{ matrix.os }}
+          path: ${{ matrix.os }}
           
+ 
+ 
+ 
       - name: download-artifact   
-
+        if: github.ref_type=='tag' 
         uses: actions/download-artifact@v3
         with: 
-          path: ./artifact/        
+          path: ./artifact/
+   
 
       - name: note
         if: github.ref_type=='tag' 
