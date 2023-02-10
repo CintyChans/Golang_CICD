@@ -23,8 +23,9 @@ jobs:
       - name: dependancy
         run: |
           go mod tidy
-          cd /opt/hostedtoolcache/go/1.19.5/x64/bin
-          ls -l
+          go get -u github.com/golang/protobuf/protoc-gen-go
+          protoc --proto_path=./  --go_out=./ ./test.proto
+          go run .\test.pb.go .\main.go
           
       - name: note
         shell: python 
