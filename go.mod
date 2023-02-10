@@ -8,4 +8,5 @@ require (
 	github.com/sirupsen/logrus v1.9.0
 	gonum.org/v1/gonum v0.12.0
 	google.golang.org/protobuf v1.28.1
+	google.golang.org/protobuf/cmd/protoc-gen-go v1.28.1  
 )
