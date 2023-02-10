@@ -74,9 +74,7 @@ func Process(conn net.Conn,n *sync.WaitGroup) string{
 	var buf []byte = make([]byte,128) 
 	for {
 		conn.SetReadDeadline(time.Now().Add(time.Second*2))
-		fmt.Println(1)
 		n,err := conn.Read(buf)
-		fmt.Println(2)
 		if err != nil {
 			log.Error(err)
 			break
@@ -111,7 +109,6 @@ func ListenServer(addr string,n *sync.WaitGroup)  {
 	}
 	log.Info("listen to","address")
 	conn, err := listen.Accept()
-	fmt.Println(3)
 	if err != nil {
 		log.Error("Tcp Accept() failed, err: ", err)
 		return	
