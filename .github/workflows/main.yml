@@ -26,6 +26,7 @@ jobs:
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run .\test.pb.go .\main.go
           
+          
       - name: note
         shell: python 
         run: |
