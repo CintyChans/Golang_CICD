@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3 
       
@@ -22,7 +22,6 @@ jobs:
           
       - name: dependancy
         run: |
-          go get google.golang.org/protobuf
           go mod tidy
           protoc --proto_path=./  --go_out=./ ./test.proto
           go run .\test.pb.go .\main.go
