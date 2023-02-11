@@ -46,7 +46,7 @@ jobs:
         run: go test -v  test.pb.go  main.go  main_test.go
         
       - name: build
-        run: go build -o ${{ matrix.triplet }} test.pb.go main.go
+        run: go build -o ${{ matrix.name }} main
  
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
