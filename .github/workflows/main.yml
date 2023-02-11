@@ -15,7 +15,13 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04,windows-latest,macos-latest]
-
+        include:
+          - os: windows-latest
+            name: windows_test.exe
+          - os: ubuntu-20.04
+            name: linux_test
+          - os: macos-latest
+            name: macos_test
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -40,13 +46,13 @@ jobs:
         run: go test -v  test.pb.go  main.go  main_test.go
         
       - name: build
-        run: go build main
+        run: go build -o ${{ matrix.triplet }} test.pb.go main.go
  
       - name: Upload Artifacts
         uses: actions/upload-artifact@v3
         with:
           name: test-${{ matrix.os }}
-          path: .
+          path: ${{ matrix.triplet }}
           
  
       - name: download-artifact   
