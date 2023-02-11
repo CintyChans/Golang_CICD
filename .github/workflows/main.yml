@@ -52,7 +52,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: test-${{ matrix.os }}
-          path: ${{ matrix.triplet }}
+          path: ${{ matrix.name }}
           
  
       - name: download-artifact   
