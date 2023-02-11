@@ -14,11 +14,11 @@ jobs:
   job:
     strategy:
       matrix:
-        os: [ubuntu-20.04,windows-latest,macos-latest]
+        os: [ubuntu-latest,windows-latest,macos-latest]
         include:
           - os: windows-latest
             name: windows_test.exe
-          - os: ubuntu-20.04
+          - os: ubuntu-latest
             name: linux_test
           - os: macos-latest
             name: macos_test
@@ -46,9 +46,11 @@ jobs:
         run: go test -v  test.pb.go  main.go  main_test.go
         
       - name: build
+        if: github.ref_type=='tag' 
         run: go build -o ${{ matrix.name }} main
  
       - name: Upload Artifacts
+        if: github.ref_type=='tag' 
         uses: actions/upload-artifact@v3
         with:
           name: test-${{ matrix.os }}
@@ -56,28 +58,30 @@ jobs:
           
  
       - name: download-artifact   
+        if: github.ref_type=='tag' 
         uses: actions/download-artifact@v3
         with: 
           path: ./artifact/
    
 
-#       - name: note
-#         shell: python 
-#         run: |
-#           import os;f=open('releasenotes.md',"r");obj={i[0].strip():i[1:] for i in [i.split('-') for i in f.read().split('##')[1:]]};f.close()
-#           note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0]
-#           os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
-#           tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n.strip())) for n in note ]
-#           os.system("echo 'EOF' >> $GITHUB_ENV")
+      - name: note
+        if: github.ref_type=='tag' 
+        shell: python 
+        run: |
+          import os;f=open('releasenotes.md',"r");obj={i[0].strip():i[1:] for i in [i.split('-') for i in f.read().split('##')[1:]]};f.close()
+          note=[obj[i] for i in obj if i=='${{github.ref_name}}'];note=[note[0] if note else ''][0]
+          os.system("echo 'NOTE<<EOF' >> $GITHUB_ENV")
+          tmp=[os.system("echo '{}' >> $GITHUB_ENV".format(n.strip())) for n in note ]
+          os.system("echo 'EOF' >> $GITHUB_ENV")
           
-#       - name: Create Release
-#  #       if: github.ref_type=='tag' 
-#         uses: softprops/action-gh-release@v1
-#         with:
-#           tag_name: ${{github.ref_name}}
-#           name: ${{github.ref_name}}
-#           body: ${{env.NOTE}}
-#           prerelease: false
-#           files: ./artifact/test-${{ matrix.os }}/*
-#           draft: false
+      - name: Create Release
+        if: github.ref_type=='tag' 
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{github.ref_name}}
+          name: ${{github.ref_name}}
+          body: ${{env.NOTE}}
+          prerelease: false
+          files: ./artifact/test-${{ matrix.os }}/*
+          draft: false
 
