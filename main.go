@@ -127,13 +127,13 @@ func Parser() string{
 } 
 func userVectors() {
 	a := mat.NewDense(2, 2, []float64{1, 0,1, 0,})
-	fmt.Print("a = ", mat.Formatted(a, mat.Prefix("    "), mat.Squeeze()),"\n")
+	fmt.Printf("a = %#v\n\n", mat.Formatted(a, mat.Prefix("    "), mat.Squeeze()))
 	b := mat.NewDense(2, 2, []float64{0, 1,0, 1,})
-	fmt.Print("b = ", mat.Formatted(b, mat.Prefix("    "), mat.Squeeze()),"\n")
+	fmt.Printf("b = %#v\n\n", mat.Formatted(b, mat.Prefix("    "), mat.Squeeze()))
 	var c mat.Dense
 	c.Add(a, b)
 	fc := mat.Formatted(&c, mat.Prefix("       "), mat.Squeeze())
-	fmt.Print("c=a+b= ", fc,"\n")
+	fmt.Printf("c=a+b= %#v\n", fc)
 
 }
 var myclient *Client
